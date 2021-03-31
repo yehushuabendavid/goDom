@@ -1,3 +1,3 @@
-module code
+module goDom
 
 go 1.16
