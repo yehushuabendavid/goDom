@@ -1,7 +1,7 @@
 package main
 
 import (
-	"code/dom"
+	"goDom/dom"
 	"fmt"
 	"html"
 	"io/ioutil"
