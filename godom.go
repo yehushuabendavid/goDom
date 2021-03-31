@@ -38,6 +38,7 @@ func findTokenNoQuote(str, token string) int {
 
 type Node struct {
 	TagContent string
+	Parent     *Node
 	Nodes      []*Node
 	Attr       map[string]string
 	Index      map[string][]*Node
@@ -166,6 +167,9 @@ func DocumentParser(source string) *Node {
 					if !lst.Nodes[i].Closed && lst.Nodes[i].GetTagName() == tagName {
 						lst.Nodes[i].Closed = true
 						lst.Nodes[i].Nodes = append(lst.Nodes[i].Nodes, lst.Nodes[i+1:]...)
+						for _,n := range lst.Nodes[i].Nodes {
+							n.Parent=lst.Nodes[i]
+						}
 						lst.Nodes = append([]*Node{}, lst.Nodes[:i+1]...)
 						lst.Nodes[i].updateIndex()
 						break
