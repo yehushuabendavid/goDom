@@ -116,6 +116,14 @@ func (n *Node) GetTagName() string {
 func (n *Node) Selector(sel string) []*Node {
 	return n.Index[sel]
 }
+
+func (n *Node) SelectorFirst(sel string) *Node {
+	nodes:=n.Index[sel]
+	if len(nodes)==0 {
+		return nil
+	}
+	return nodes[0]
+}
 func (n *Node) InnerContent() string {
 	s:=""
 	for _, an := range n.Nodes {
